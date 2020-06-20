@@ -17,7 +17,7 @@ class App extends Component{
                 <Forum/>
                 <Post/>
                 </div>
-            </React.Fragment>
+                </React.Fragment>
             </Provider>
             
         

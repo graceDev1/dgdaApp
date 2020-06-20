@@ -14,6 +14,9 @@ class Forum(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     datePost = models.DateField(auto_now=True)
 
-# class Post(models.Model):
-#     content = models.TextField()
-#     pdf_file = models.FileField(upload_to=None, max_length=255)
+    
+
+class Post(models.Model):
+    content = models.TextField()
+    pdf_file = models.FileField(upload_to='pdf_file', max_length=255)
+    date_post = models.DateField(auto_now=True)

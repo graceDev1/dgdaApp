@@ -1,5 +1,5 @@
 import { combineReducers} from 'redux';
-import regmt from './regmt';
+import posts from './regmt';
 export default combineReducers({
-    regmt
+    posts
 });
