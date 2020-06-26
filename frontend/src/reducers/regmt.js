@@ -1,8 +1,9 @@
-import {GET_POST} from "../actions/types.js";
+import {GET_POST, POST_USER} from "../actions/types.js";
 
 
 const initialState ={
-    posts: []
+    posts: [],
+    users : []
 }
 
 export default function(state = initialState, action){
@@ -12,6 +13,11 @@ export default function(state = initialState, action){
                 ...state,
                 posts: action.payload
             }
+        case POST_USER:
+        return{
+            ...state,
+            users : [...state.users, action.payload]
+        }
             default:
                 return state;
     }

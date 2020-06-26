@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class User(models.Model):
     nom = models.CharField(max_length=100)
@@ -11,6 +12,8 @@ class User(models.Model):
 class Forum(models.Model):
     subject = models.CharField(max_length=100)
     message = models.TextField()
+    owner = models.ForeignKey(User, 
+    related_name='Forum', on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     datePost = models.DateField(auto_now=True)
 
