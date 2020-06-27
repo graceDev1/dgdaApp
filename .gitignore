@@ -1,4 +1,4 @@
-node_modules/
+/node_modules
 
 
 # if yout build process includes running collectstatic, then you probably don't need or

@@ -48,13 +48,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
     'frontend',
     'knox',
     'accounts'
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES':('knox.auth.TokenAuthentication')
+    'DEFAULT_AUTHENTICATION_CLASSES':('knox.auth.TokenAuthentication','rest_framework.authentication.SessionAuthentication',)
 }
 
 
