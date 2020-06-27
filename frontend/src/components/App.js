@@ -1,13 +1,26 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+
+import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+
 import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
+
+
 import Header from './layout/Header';
 import Post from './pages/Post';
+import Home from './pages/Home'
+import Forum from './pages/Forum';
+import Login from './Auth/Login';
+import Register from './Auth/Register';
+import PrivateRoute from './common/PrivateRoute';
+
 import { Provider } from 'react-redux';
 import store from '../store';
-import Alert from './layout/Alert';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { loadUser } from '../actions/auth';
+
+
+
 
 // alert options 
 const alertOption = {
@@ -16,19 +29,30 @@ const alertOption = {
 }
 
 class App extends Component{
+
+  
+    componentDidMount() {
+        store.dispatch(loadUser());
+      }
+
     render(){
         return (
             <Provider store={store}>
+                <AlertProvider template={AlertTemplate} {...alertOption}>
                     <Router>
-                    <React.Fragment>
                     <Header/>
                     <div className="container mt-4">
-                    
-                    <Post/>
+                        <Switch> 
+                            <Route exact path="/" component={Home}/>
+                            <PrivateRoute exact path="/post" component={Post}/>
+                            <PrivateRoute exact path="/forum" component={Forum}/>
+                            <Route exact path="/register" component={Register}/>
+                            <Route exact path="/login" component={Login}/>
+                        </Switch>
+                        
                     </div>
-                    </React.Fragment>
                     </Router>
-                
+                </AlertProvider>
             </Provider>
             
         

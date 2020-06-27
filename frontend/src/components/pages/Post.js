@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import  { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getPost } from '../../actions/posts';
-import { Link } from 'react-router-dom';
+
 
 
 export class Post extends Component {
@@ -27,8 +27,8 @@ export class Post extends Component {
                         <tr key={posts.id}>
                             <td> Publier le {posts.date_post}</td>
                             <td>{posts.content}</td>
-                            <td><Link to={posts.file} className="btn btn-primary btn-sm">
-                                Telecharger le PDF</Link></td>
+                            <td><button to={posts.file} className="btn btn-primary btn-sm">
+                                Telecharger le PDF</button></td>
                         </tr>
                     ))}
                 </tbody>        
