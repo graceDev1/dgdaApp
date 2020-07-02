@@ -1,5 +1,5 @@
 /node_modules
-
+/pdf_file
 
 # if yout build process includes running collectstatic, then you probably don't need or
 # want to include staticfiles/

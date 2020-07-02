@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {addUser} from '../../actions/register';
+import {register} from '../../actions/auth';
+import { createMessage } from '../../actions/messages';
 import { Link } from 'react-router-dom';
 
 
@@ -11,26 +12,36 @@ export class Register extends Component {
         username: '',
         email: '',
         password: '',
-        password2: ''
+        password2: '' 
     }
 
     static propTypes = {
-        addUser : PropTypes.func.isRequired,  
+        register : PropTypes.func.isRequired,  
+        isAuthenticated: PropTypes.bool,
+        createMessage: PropTypes.func.isRequired
     }
 
-    onChange = e => this.setState({[e.target.name]: e.target.value});
-
+    
     onSubmit = e => {
         e.preventDefault();
-        console.log('on submit');
-        // const {username, email, password,password2} = this.state;
-        // let user = {
-        //     username,
-        //     email,
-        //     password,
-        //     password2
-        // };
-        // this.props.addUser(user);
+        const { password, password2} = this.state;
+        if(password !== password2){
+            this.props.createMessage({passwordNotMatch: 'password do not match'});
+            console.log("is not matched ")
+        }
+        else{
+            console.log("alert ");
+        let newuser = {
+            username,
+            email,
+            password,
+        };
+        this.props.register(newuser);
+            
+        }
+        
+        onChange = e => this.setState({[e.target.name]: e.target.value});
+        
     }
 
     render() {
@@ -52,10 +63,10 @@ export class Register extends Component {
                         <input className="form-control" type="password" value={password} name="password" onChange={this.onChange}  placeholder="Votre Mot de passe"/>
                     </div>
                     <div className="form-group">
-                        <input className="form-control" type="password" value={password} name="password" onChange={this.onChange}  placeholder="Confirmer le mot de passe"/>
+                        <input className="form-control" type="password" value={password2} name="password2" onChange={this.onChange}  placeholder="Confirmer le mot de passe"/>
                     </div>
                     <p>Deja un inscrit? <Link to="/login">Connectez-vous</Link></p>
-                        <button className="btn btn-primary rounded" type="submit" name="register">Inscrit</button>
+                        <button className="btn btn-primary rounded" type="submit">Inscrit</button>
                        
                 </form>
             </div>
@@ -64,6 +75,8 @@ export class Register extends Component {
     }
 }
 
+const mapStateToProps = state=>({
+    isAuthenticated: state.auth.isAuthenticated
+})
 
-
-export default connect(null, {addUser})(Register);
+export default connect(mapStateToProps, {register, createMessage})(Register);

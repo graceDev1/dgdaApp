@@ -1,8 +1,36 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from "prop-types";
+import { logout } from '../../actions/auth'
 
 export class Header extends Component {
+
+    static propTypes = {
+        auth : PropTypes.object.isRequired,
+        logout: PropTypes.func.isRequired
+    }
     render() {
+        const { isAuthenticated, user } = this.props.auth;
+        const authLinks  = (
+            <ul className="navbar-nav ml-auto">
+            <li className="nav-item active">
+                 <button onClick={this.props.logout} className="nav-link btn btn-info btn-sm text-light">
+                     Deconnecter
+                 </button>
+            </li>
+        </ul>
+        );
+
+        const authLog  = (
+            <ul className="navbar-nav ml-auto">
+            <li className="nav-item active">
+                 <Link className="nav-link btn btn-info btn-sm text-light" to="/login">
+                     Connecter
+                 </Link>
+            </li>
+        </ul>
+        );
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-10">
                 
@@ -26,7 +54,7 @@ export class Header extends Component {
                             <Link className="nav-link" to="/forum">Forum</Link>
                         </li>
                     </ul>
-
+                    { isAuthenticated ? authLinks : authLog }
                 </div>
                 
             </nav>
@@ -34,4 +62,7 @@ export class Header extends Component {
     }
 }
 
-export default Header
+const mapStateToProps = state =>({
+    auth : state.auth
+})
+export default connect(mapStateToProps,{ logout })(Header);
