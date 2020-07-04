@@ -33,14 +33,14 @@ export const loadUser = () =>( dispatch, getState)=>{
         config.headers['Authorization'] = `Token ${token}`;
     }
 
-    axios.get('/api/auth/user',config)
+    axios.get('/users/',config)
     .then(res=>{
         dispatch({
             type: USER_LOADED,
             payload: res.data
         });
     }).catch(err => {
-        dispatch(returnErrors(err.response.data, err.respnse.status));
+        dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({
             type: AUTH_ERROR
         })
@@ -61,7 +61,8 @@ export const loginUser = (username, password) =>dispatch=>{
     
     // request body
     const body = JSON.stringify({username, password})
-    axios.post('/api/auth/login',body,config)
+    // axios http request
+    axios.post('/token/login/',body,config)
     .then(res=>{
         dispatch({
             type: LOGIN_SUCCESS,
@@ -78,8 +79,6 @@ export const loginUser = (username, password) =>dispatch=>{
 // USER LOG OUT
 
 export const logout = () =>( dispatch, getState)=>{
-   
-
     //Get token from state
     const token = getState().auth.token;
 
@@ -94,14 +93,14 @@ export const logout = () =>( dispatch, getState)=>{
         config.headers['Authorization'] = `Token ${token}`;
     }
 
-    axios.post('/api/auth/logout/',null,config)
+    axios.post('/token/logout/',null,config)
     .then(res=>{
         dispatch({
             type: LOGOUT_SUCCESS,
             payload: res.data
         });
     }).catch(err => {
-        dispatch(returnErrors(err.response.data, err.respnse.status));
+        dispatch(returnErrors(err.response.data, err.response.status));
     }) 
 }
 
@@ -110,7 +109,7 @@ export const logout = () =>( dispatch, getState)=>{
 
 // login user
 
-export const register = ({username,email,password}) =>dispatch=>{
+export const register = ({email,username,password,re_password}) =>dispatch=>{
    
     // headers
     const config = {
@@ -120,8 +119,8 @@ export const register = ({username,email,password}) =>dispatch=>{
     }
     
     // request body
-    const body = JSON.stringify({username,email,password})
-    axios.post('/api/auth/register',body,config)
+    const body = JSON.stringify({email,username,password,re_password})
+    axios.post('/users/',body,config)
     .then(res=>{
         dispatch({
             type: REGISTER_SUCCESS,

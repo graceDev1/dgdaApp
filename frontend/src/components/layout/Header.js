@@ -14,6 +14,9 @@ export class Header extends Component {
         const { isAuthenticated, user } = this.props.auth;
         const authLinks  = (
             <ul className="navbar-nav ml-auto">
+                <span className="navbar-text mr-3">
+                    <strong>{user ? `Welcome ${user.username}` : ''}</strong>
+                </span>
             <li className="nav-item active">
                  <button onClick={this.props.logout} className="nav-link btn btn-info btn-sm text-light">
                      Deconnecter

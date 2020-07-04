@@ -25,11 +25,11 @@ SECRET_KEY = 'o2a2%iz)eddp6^^wc^xm#wig41li+_u=jx0iokd4p4^ae-kpg-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    )
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#     )
+# }
 
 ALLOWED_HOSTS = []
 
@@ -50,14 +50,28 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'frontend',
-    'knox',
+    'djoser',
     'accounts'
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES':
-    ('knox.auth.TokenAuthentication',
-    'rest_framework.permissions.IsAuthenticated',)
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSIONS_CLASSES': (
+        'rest_framework.permissions.IsAuthentication',
+    )
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    # )
+
+}
+
+DJOSER = {
+    'LOGIN_FIELD': 'username',
+    'USER_CREATE_PASSWORD_RETYPE': True
 }
 
 

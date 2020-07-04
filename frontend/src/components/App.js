@@ -14,6 +14,7 @@ import Forum from './pages/Forum';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import PrivateRoute from './common/PrivateRoute';
+import PostForum from './pages/PostForum';
 
 import { Provider } from 'react-redux';
 import store from '../store';
@@ -46,6 +47,7 @@ class App extends Component{
                             <Route exact path="/" component={Home}/>
                             <PrivateRoute exact path="/post" component={Post}/>
                             <PrivateRoute exact path="/forum" component={Forum}/>
+                            <PrivateRoute exact path="/addForum" component={PostForum}/>
                             <Route exact path="/register" component={Register}/>
                             <Route exact path="/login" component={Login}/>
                         </Switch>

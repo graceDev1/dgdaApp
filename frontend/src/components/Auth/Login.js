@@ -33,10 +33,10 @@ export class Login extends Component {
                     <h2>Connectez Vous Ici </h2>
                     <form className="form" onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <input type="text" name="username" value={username} onChange={this.onChange} placeholder="Nom d'utilisateur" className="form-control"/>
+                            <input type="text" name="username" value={username} onChange={this.onChange} placeholder="Nom d'utilisateur" className="form-control rounded"/>
                         </div>
                         <div className="form-group">
-                            <input type="password" name="password" value={password} onChange={this.onChange} placeholder="Mot de passe" className="form-control"/>
+                            <input type="password" name="password" value={password} onChange={this.onChange} placeholder="Mot de passe" className="form-control rounded"/>
                         </div>
                         <p>
                             Avez-vous Compte?<Link to="/register">S'inscrire</Link>
