@@ -15,14 +15,14 @@ export const getForum = () => dispatch=>{
 }
 
 
-export const postForum = (title,content,user) => dispatch=>{
+export const postForum = (title,content) => dispatch=>{
       // headers
       const config = {
         headers:{
             'Content-type': 'application/json'
         }
     }
-    const body = JSON.stringify({title,content,user});
+    const body = JSON.stringify({title,content});
     axios.post('/forum/',body,config)
     .then(res => {
         dispatch({

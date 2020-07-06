@@ -5,7 +5,7 @@ from .models import Forum, Post
 class ForumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forum
-        fields = ('id','subject','message','user','datePost')
+        fields = ('id','subject','message','datePost')
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:

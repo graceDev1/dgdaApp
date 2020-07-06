@@ -11,8 +11,6 @@ class ForumViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
     serializer_class = ForumSerializer
-    def get_queryset(self):
-        return self.request.user.api.all()
     
 
 

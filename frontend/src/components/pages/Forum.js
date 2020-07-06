@@ -2,8 +2,20 @@ import React, { Component,Fragment } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getForum } from './../../actions/forum';
+import PropTypes from 'prop-types';
 
 export class Forum extends Component {
+    
+    static propTypes = {
+        getForum : PropTypes.func.isRequired,
+        forums : PropTypes.array.isRequired
+
+    }
+
+    componentDidMount(){
+        this.props.getForum();
+    }
+
     render() {
         return (
            <Fragment>
@@ -12,7 +24,13 @@ export class Forum extends Component {
                 <thead>
                 </thead>
                 <tbody>
-                  
+                  {this.props.forums.map(forum =>(
+                      <tr key={forum.id}>
+                          <td><strong>{forum.subject}</strong>
+                          <p>{forum.message}</p>
+                          </td>
+                      </tr>
+                  ))}
                 </tbody>        
                 </table>
            </Fragment>
@@ -20,4 +38,10 @@ export class Forum extends Component {
     }
 }
 
-export default connect() (Forum);
+const mapSateToProps = (state) =>{
+    return {
+        forums : state.forums.items
+    }
+}
+
+export default connect(mapSateToProps,{ getForum }) (Forum);

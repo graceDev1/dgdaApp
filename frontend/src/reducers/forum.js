@@ -1,7 +1,8 @@
 import { GET_FORUM, POST_FORUM } from '../actions/types';
 
 const initialState = {
-    forums: []
+    forums: [],
+    forum: {}
 }
 
 
@@ -15,7 +16,7 @@ export default function(state=initialState, action){
         case POST_FORUM:
             return{
                 ...state,
-                forums: [...state.forums, action.payload]
+                forum: [...state.forums, action.payload]
             }
         default:
             return state;

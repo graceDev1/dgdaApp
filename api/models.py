@@ -1,11 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Forum(models.Model):
     subject = models.CharField(max_length=100)
     message = models.TextField()
-    user = models.ForeignKey(User, related_name="api", on_delete=models.CASCADE, null=True)
     datePost = models.DateField(auto_now=True)
 
     
