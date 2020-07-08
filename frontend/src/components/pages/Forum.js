@@ -24,7 +24,7 @@ export class Forum extends Component {
                 <thead>
                 </thead>
                 <tbody>
-                  {this.props.forums.map(forum =>(
+                {this.props.forums.map(forum =>(
                       <tr key={forum.id}>
                           <td><strong>{forum.subject}</strong>
                           <p>{forum.message}</p>
@@ -40,7 +40,7 @@ export class Forum extends Component {
 
 const mapSateToProps = (state) =>{
     return {
-        forums : state.forums.items
+        forums : state.forums.forums
     }
 }
 

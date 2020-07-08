@@ -4,7 +4,7 @@ import { GET_FORUM, POST_FORUM} from './types';
 
 
 export const getForum = () => dispatch=>{
-    axios.get('/forum/')
+    axios.get('/api/forum/')
     .then(res => {
         dispatch({
             type: GET_FORUM,
@@ -23,7 +23,7 @@ export const postForum = (title,content) => dispatch=>{
         }
     }
     const body = JSON.stringify({title,content});
-    axios.post('/forum/',body,config)
+    axios.post('/api/forum/',body,config)
     .then(res => {
         dispatch({
             type: POST_FORUM,

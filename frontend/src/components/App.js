@@ -47,7 +47,7 @@ class App extends Component{
                             <Route exact path="/" component={Home}/>
                             <PrivateRoute exact path="/post" component={Post}/>
                             <PrivateRoute exact path="/forum" component={Forum}/>
-                            <PrivateRoute exact path="/addForum" component={PostForum}/>
+                            <Route exact path="/addForum" component={PostForum}/>
                             <Route exact path="/register" component={Register}/>
                             <Route exact path="/login" component={Login}/>
                         </Switch>
